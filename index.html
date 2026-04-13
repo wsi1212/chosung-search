@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>초성 검색</title>
+<link rel="stylesheet" href="/src/style.css"/>
+</head>
+<body>
+
+<div id="hd">
+  <div class="hd-row">
+    <h1>초성 검색</h1>
+    <span id="stat"></span>
+  </div>
+  <input id="q" type="text" placeholder="초성 입력  예) ㄱ  ㄷㅇ  ㅅㅈ" autocomplete="off" autofocus spellcheck="false"/>
+  <div id="hint">초성으로 검색 · 짧은순 정렬</div>
+</div>
+
+<div id="toolbar">
+  <button id="btn-edit" onclick="toggleEdit()">✏️ 편집</button>
+  <button onclick="focusNewCat()">＋ 주제 추가</button>
+  <button onclick="exportData()">⬇ 내보내기</button>
+  <button onclick="document.getElementById('file-in').click()">⬆ 가져오기</button>
+  <button onclick="resetData()" style="color:#c00;border-color:#c00">↺ 초기화</button>
+  <button onclick="copyFromStorage()">📋 로컬스토리지 복사</button>
+  <button onclick="togglePaste()" id="btn-paste">📋 JSON 붙여넣기</button>
+  <input id="file-in" type="file" accept=".json" style="display:none" onchange="importData(event)"/>
+</div>
+
+<div id="paste-panel">
+  <textarea id="paste-input" placeholder='콘솔에서 copy(localStorage.getItem("csd_v2")) 후 여기에 붙여넣기'></textarea>
+  <div style="display:flex;gap:8px;margin-top:8px">
+    <button class="ep-btn orange" onclick="applyPaste()">적용</button>
+    <button class="ep-btn dark" onclick="copyFromStorage()">📋 로컬스토리지 복사</button>
+    <button class="ep-btn dark" onclick="togglePaste()">닫기</button>
+  </div>
+</div>
+
+<div id="ep">
+  <div class="ep-row">
+    <span class="ep-label">단어 추가</span>
+    <select id="ep-cat" class="ep-inp"></select>
+    <input id="ep-word" class="ep-inp" type="text" placeholder="단어 입력 (쉼표로 여러 개 가능)"/>
+    <button class="ep-btn orange" onclick="addWords()">추가</button>
+  </div>
+  <div class="ep-row">
+    <span class="ep-label">단어 수정</span>
+    <select id="ep-edit-cat" class="ep-inp" onchange="refreshEditWords()"></select>
+    <select id="ep-edit-word" class="ep-inp"></select>
+    <input id="ep-edit-new" class="ep-inp" type="text" placeholder="새 단어"/>
+    <button class="ep-btn orange" onclick="editWord()">수정</button>
+  </div>
+  <div class="ep-row">
+    <span class="ep-label">주제 추가</span>
+    <input id="ep-new-cat" class="ep-inp" type="text" placeholder="새 주제 이름" style="max-width:180px"/>
+    <button class="ep-btn dark" onclick="addCat()">만들기</button>
+  </div>
+  <div class="ep-tip">변경사항은 자동 저장됩니다 · 내보내기로 JSON 백업 가능</div>
+</div>
+
+<div id="main"></div>
+<div id="empty">검색 결과가 없습니다</div>
+
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

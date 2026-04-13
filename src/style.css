@@ -1,0 +1,124 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; background: #f4f4f4; color: #1a1a1a; min-height: 100vh; }
+
+/* Header */
+#hd { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 14px 16px; position: sticky; top: 0; z-index: 20; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+.hd-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+h1 { font-size: 16px; font-weight: 800; flex: 1; }
+#stat { font-size: 11px; color: #999; white-space: nowrap; }
+#q { width: 100%; padding: 10px 14px; font-size: 17px; border: 2px solid #ddd; border-radius: 10px; outline: none; transition: border-color .12s; background: #fafafa; letter-spacing: 1px; }
+#q:focus { border-color: #444; background: #fff; }
+#hint { font-size: 11px; color: #aaa; margin-top: 5px; }
+
+/* Toolbar */
+#toolbar { display: flex; gap: 8px; align-items: center; padding: 10px 16px; background: #fff; border-bottom: 1px solid #eee; flex-wrap: wrap; }
+#toolbar button { font-size: 12px; padding: 5px 11px; border-radius: 7px; border: 1.5px solid #ddd; background: #fff; cursor: pointer; color: #444; font-weight: 600; transition: all .1s; }
+#toolbar button:hover { border-color: #888; }
+#btn-edit.on { border-color: #d04000; color: #d04000; background: #fff5f0; }
+
+/* Edit panel */
+#ep { display: none; padding: 12px 16px; background: #fffaf7; border-bottom: 1px solid #f0ddd0; }
+#ep.on { display: block; }
+.ep-row { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; margin-bottom: 8px; }
+.ep-row:last-child { margin-bottom: 0; }
+.ep-label { font-size: 12px; font-weight: 700; color: #888; min-width: 55px; }
+.ep-inp { flex: 1; min-width: 130px; padding: 7px 10px; font-size: 13px; border: 1.5px solid #ddd; border-radius: 7px; outline: none; background: #fff; }
+.ep-inp:focus { border-color: #d04000; }
+select.ep-inp { cursor: pointer; }
+.ep-btn { padding: 7px 13px; font-size: 12px; font-weight: 700; border: none; border-radius: 7px; cursor: pointer; }
+.ep-btn.orange { background: #d04000; color: #fff; }
+.ep-btn.dark { background: #333; color: #fff; }
+.ep-tip { font-size: 11px; color: #c0a090; }
+
+/* JSON 붙여넣기 패널 */
+#paste-panel { display: none; padding: 12px 16px; background: #f7f7ff; border-bottom: 1px solid #ddd; }
+#paste-panel.on { display: block; }
+#paste-input { width: 100%; height: 100px; padding: 8px 10px; font-size: 12px; font-family: monospace; border: 1.5px solid #ccc; border-radius: 7px; outline: none; resize: vertical; }
+#paste-input:focus { border-color: #555; }
+
+/* Main */
+#main { padding: 16px; }
+#empty { text-align: center; color: #bbb; font-size: 14px; padding: 60px 0; display: none; }
+
+/* 카테고리 그리드 */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+/* 카테고리 컬럼 */
+.cat-col {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.07);
+}
+
+/* 카테고리 헤더 */
+.cat-head {
+  background: #2a2a2a;
+  padding: 8px 12px;
+}
+
+.th-label {
+  cursor: pointer;
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 4px;
+  padding: 2px 2px;
+  transition: background .1s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.th-label:hover { background: rgba(255,255,255,.15); }
+
+/* 인라인 단어 추가 */
+.th-addinput {
+  display: none;
+  gap: 4px;
+  margin-top: 6px;
+  align-items: center;
+}
+.th-inp {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 7px;
+  font-size: 12px;
+  border: 1.5px solid #888;
+  border-radius: 5px;
+  outline: none;
+  background: #fff;
+  color: #111;
+  width: 100%;
+}
+.th-inp:focus { border-color: #fff; }
+.th-inp-btn {
+  padding: 4px 8px;
+  font-size: 13px;
+  font-weight: 700;
+  background: #ff6b00;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* 단어 목록 */
+.word-list {
+  padding: 4px 0;
+  max-height: 250px;
+  overflow-y: auto;
+}
+.word-cell {
+  padding: 7px 12px;
+  font-size: 20px;
+  border-bottom: 1px solid #f2f2f2;
+  text-align: center;
+  white-space: nowrap;
+}
+.word-cell:last-child { border-bottom: none; }
